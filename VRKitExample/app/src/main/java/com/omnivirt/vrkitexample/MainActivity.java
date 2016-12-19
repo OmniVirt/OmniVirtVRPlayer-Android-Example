@@ -2,8 +2,12 @@ package com.omnivirt.vrkitexample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.omnivirt.vrkit.Mode;
 import com.omnivirt.vrkit.Quality;
@@ -27,9 +31,7 @@ public class MainActivity extends AppCompatActivity implements VRPlayerFragment.
     }
 
     @Override
-    public void onFragmentCreated() {
-        mPlayer.load(24);
-    }
+    public void onFragmentCreated() { mPlayer.load(24); }
 
     @Override
     public void onLoaded(Integer maxQuality, Quality quality, Mode mode) {
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements VRPlayerFragment.
     public void onEnded() {
         this.log("Ended");
     }
+
+    @Override
+    public void onSkipped() { this.log("Skipped"); }
 
     @Override
     public void onDurationChanged(Double aDouble) {
@@ -89,13 +94,29 @@ public class MainActivity extends AppCompatActivity implements VRPlayerFragment.
     @Override
     public void onExpanded() {
         this.log("Expanded");
-        Toast.makeText(this, "TODO: plese expand our player to full screen.", Toast.LENGTH_SHORT).show();
+        final LinearLayout layout = (LinearLayout)this.findViewById(R.id.vrplayer_container);
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)layout.getLayoutParams();
+        params.height = LinearLayout.LayoutParams.MATCH_PARENT;
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                layout.setLayoutParams(params);
+            }
+        });
     }
 
     @Override
     public void onCollapsed() {
         this.log("Collapsed");
-        Toast.makeText(this, "TODO: plese collapse our player to normal position.", Toast.LENGTH_SHORT).show();
+        final LinearLayout layout = (LinearLayout)this.findViewById(R.id.vrplayer_container);
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)layout.getLayoutParams();
+        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics());
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                layout.setLayoutParams(params);
+            }
+        });
     }
 
     @Override
