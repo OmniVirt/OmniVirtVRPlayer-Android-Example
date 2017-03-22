@@ -1,37 +1,136 @@
 package com.omnivirt.vrkitexample;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.omnivirt.vrkit.AdState;
 import com.omnivirt.vrkit.Mode;
+import com.omnivirt.vrkit.OnVRAdInteractionListener;
+import com.omnivirt.vrkit.OnVRPlayerInteractionListener;
 import com.omnivirt.vrkit.Quality;
+import com.omnivirt.vrkit.VRAd;
 import com.omnivirt.vrkit.VRPlayerFragment;
 
 import java.lang.reflect.Array;
 
-public class MainActivity extends AppCompatActivity implements VRPlayerFragment.OnVRPlayerInteractionListener {
-
+public class MainActivity extends Activity implements OnVRPlayerInteractionListener, OnVRAdInteractionListener {
     private VRPlayerFragment mPlayer = null;
     private TextView mTextView = null;
+    private Button mAdButton = null;
+    private VRAd mVrAd = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextView = (TextView)this.findViewById(R.id.vrplayer_output_textview);
+        mTextView = (TextView)this.findViewById(R.id.vrplayer_output_textview); // Player State Logging
 
-        mPlayer = (VRPlayerFragment)this.getSupportFragmentManager().findFragmentById(R.id.vrplayer_fragment);
+        mPlayer = (VRPlayerFragment)this.getFragmentManager().findFragmentById(R.id.vrplayer_fragment);
+
+        // Use this method to disable interface
+        //
+        // mPlayer.setInterface(Mode.OFF);
+
+        // For manually creating VRplayer without storyboard, please uncomment the following code.
+        //
+        // mPlayer = VRPlayerFragment.newInstance(this);
+
+        // Creating VR Ad instance
+        //
+        mVrAd = new VRAd(1, this);
+
+        // Loading and starting VR Ad using a button
+        //
+        mAdButton = (Button)this.findViewById(R.id.start_ad_button);
+        mAdButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String title = mAdButton.getText().toString();
+                if (title.equals("Load Ad")) {
+                    // Load Ad
+                    //
+                    mVrAd.load();
+                } else if (title.equals("Start Ad")) {
+                    // Select the option to turn on / off Cardboard mode for ads
+                    //
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Please select Cardboard mode")
+                            .setCancelable(false)
+                            .setPositiveButton("OFF", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Start Ad without cardboard
+                                    //
+                                    mVrAd.show(Mode.OFF);
+                                }
+                            })
+                            .setNegativeButton("ON", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Start Ad with cardboard
+                                    //
+                                    mVrAd.show(Mode.ON);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            }
+        });
     }
 
     @Override
-    public void onFragmentCreated() { mPlayer.load(24); }
+    public void onAdStatusChanged(VRAd instance, AdState status) {
+        switch (status) {
+            case None:
+                break;
+            case Loading:
+                this.log("Ad state is loading");
+                mAdButton.setText("Loading Ad");
+                mAdButton.setEnabled(false);
+                break;
+            case Ready:
+                this.log("Ad state is ready");
+                mAdButton.setText("Start Ad");
+                mAdButton.setEnabled(true);
+                break;
+            case Showing:
+                this.log("Ad state is showing");
+                mAdButton.setText("Showing Ad");
+                mAdButton.setEnabled(false);
+                mPlayer.setIdle(Mode.ON); // Idling any video player to reserve GPU resources for VR Ad
+                break;
+            case Completed:
+                this.log("Ad state is completed");
+                mAdButton.setText("Load Ad");
+                mAdButton.setEnabled(true);
+                mPlayer.setIdle(Mode.OFF); // Resume the video player
+                break;
+            case Failed:
+                this.log("Ad state is failed");
+                mAdButton.setText("Load Ad");
+                mAdButton.setEnabled(true);
+                break;
+        }
+    }
+
+    @Override
+    public void onFragmentCreated() {
+        mPlayer.load(24);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        // This method helps player from reloading when orientation changes.
+        //
+        super.onConfigurationChanged(config);
+    }
 
     @Override
     public void onLoaded(Integer maxQuality, Quality quality, Mode mode) {
