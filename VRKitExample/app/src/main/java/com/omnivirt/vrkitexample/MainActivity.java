@@ -133,6 +133,15 @@ public class MainActivity extends Activity implements OnVRPlayerInteractionListe
     }
 
     @Override
+    public void onBackPressed() {
+        // This method prevents users from exiting ads while playing to get a better conversion.
+        //
+        if (mVrAd.getStatus() == AdState.Showing) return;
+
+        super.onBackPressed();
+    }
+
+    @Override
     public void onLoaded(Integer maxQuality, Quality quality, Mode mode) {
         this.log("Loaded maxQuality:" + maxQuality.toString() + " currentQuality:" + quality.toString() + " currentMode:" + mode.toString());
     }
