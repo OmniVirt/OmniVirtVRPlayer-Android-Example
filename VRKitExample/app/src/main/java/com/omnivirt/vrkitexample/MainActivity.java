@@ -76,6 +76,7 @@ public class MainActivity extends Activity implements OnVRPlayerInteractionListe
                                     // Start Ad with cardboard
                                     //
                                     mVrAd.show(Mode.ON);
+                                    mVrAd.unload();
                                 }
                             });
                     AlertDialog alert = builder.create();
