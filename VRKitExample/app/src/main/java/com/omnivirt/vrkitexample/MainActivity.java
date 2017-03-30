@@ -76,7 +76,6 @@ public class MainActivity extends Activity implements OnVRPlayerInteractionListe
                                     // Start Ad with cardboard
                                     //
                                     mVrAd.show(Mode.ON);
-                                    mVrAd.unload();
                                 }
                             });
                     AlertDialog alert = builder.create();
@@ -135,9 +134,12 @@ public class MainActivity extends Activity implements OnVRPlayerInteractionListe
 
     @Override
     public void onBackPressed() {
-        // This method prevents users from exiting ads while playing to get a better conversion.
+        // This method will close VR Ad when user hit back button.
         //
-        if (mVrAd.getStatus() == AdState.Showing) return;
+        if (mVrAd.getStatus() == AdState.Showing) {
+            mVrAd.unload();
+            return;
+        }
 
         super.onBackPressed();
     }
