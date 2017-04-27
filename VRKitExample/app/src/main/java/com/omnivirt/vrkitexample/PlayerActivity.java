@@ -1,6 +1,6 @@
 package com.omnivirt.vrkitexample;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
@@ -21,7 +21,7 @@ import com.omnivirt.vrkit.VRPlayerFragment;
 
 import java.lang.reflect.Array;
 
-public class PlayerActivity extends Activity implements OnVRPlayerInteractionListener, OnVRAdInteractionListener {
+public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInteractionListener, OnVRAdInteractionListener {
     private VRPlayerFragment mPlayer = null;
     private TextView mTextView = null;
     private Button mAdButton = null;
@@ -34,7 +34,7 @@ public class PlayerActivity extends Activity implements OnVRPlayerInteractionLis
 
         mTextView = (TextView)this.findViewById(R.id.vrplayer_output_textview); // Player State Logging
 
-        mPlayer = (VRPlayerFragment)this.getFragmentManager().findFragmentById(R.id.vrplayer_fragment);
+        mPlayer = (VRPlayerFragment)this.getSupportFragmentManager().findFragmentById(R.id.vrplayer_fragment);
 
         // Use this method to disable interface
         //
