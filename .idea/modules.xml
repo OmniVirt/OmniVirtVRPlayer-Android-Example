@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-VR-Example.iml" filepath="$PROJECT_DIR$/Android-VR-Example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VRKit-release/VRKit-release.iml" filepath="$PROJECT_DIR$/VRKit-release/VRKit-release.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VRKitExample.iml" filepath="$PROJECT_DIR$/VRKitExample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

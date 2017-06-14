@@ -95,7 +95,7 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
             mVrAd.unload();
 
             // Uncomment this line to prevent player activity from closing.
-            // return;
+            return;
         }
 
         super.onBackPressed();

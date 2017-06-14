@@ -15,7 +15,7 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.omnivirt.vrkit.VRPlayerFragment"
+            android:name="com.omnivirt.vrkit.VRPlayerSupportFragment"
             android:id="@+id/vrplayer_fragment"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"

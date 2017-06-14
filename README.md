@@ -1,17 +1,16 @@
 # 360° Video Player and Monetization for Android
 
-OmniVirt makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app in very easy steps.
+**OmniVirt** makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app in very easy steps.
 
 The OmniVirt advertising platform enables developers and publishers to monetize their apps with engaging VR content.
 Simply integrate the OmniVirt SDK into your iOS, Android or Web application and get paid for presenting sponsored 360° video experiences to your users. Backfill your inventory with premium CPM experiences from OmniVirt’s network of advertisers. We support both 360° and 2D video ads inside VR apps.
 
-Contact us for more info at [contact@omnivirt.com](mailto:contact@omnivirt.com).
-Visit [www.omnivirt.com](https://www.omnivirt.com/) to upload content or create ad space.
+Visit [omnivirt.com](https://omnivirt.com/) to upload content or create ad space. Contact us for more info at [contact@omnivirt.com](mailto:contact@omnivirt.com).
 
 
 ## Add the OmniVirt SDK to your app
  
-Add the following lines to build.gradle of your "app" module folder (not your project root build.gradle).
+Add the following lines to `build.gradle` of your application module.
 <pre>
 dependencies {
     compile 'com.omnivirt:omnivirt-android-sdk:0.9.0'
@@ -26,19 +25,12 @@ repositories {
 
 ## Use the OmniVirt Player
 
-### Display your own VR content
+### Get Started
+
 1. Sign up for an account at [OmniVirt](www.omnivirt.com)
-2. Upload your VR/360-degree photo or video at [OmniVirt](https://www.omnivirt.com/).
+2. Upload your VR / 360° photo or video at [OmniVirt](https://www.omnivirt.com/).
 3. OmniVirt will assign an ID to your content as part of the upload. Copy the content ID and pass it to the VRPlayer's launch method.
 
-### Monetize your app with sponsored VR content
-
-1. Sign up for an account at [OmniVirt](www.omnivirt.com)
-2. Create one or more Ad Spaces for your app (for each Ad Space you can select different content and will get separate reporting)
-3. Select what content to run in each Ad Space (e.g. OmniVirt's network ads)
-4. Add one or more instances of the OmniVirt VRPlayer to your app (one for each Ad Space)
-
-## Tutorials
 ### Add a Full Screen VRPlayer
  
 1. Add the following to AndroidManifest.xml
@@ -61,24 +53,41 @@ FullscreenVRPlayer.launch(YOUR_ACTIVITY, CONTENT_ID, AUTOPLAY, CARDBOARD_MODE);
 </pre>
 5.    Implement interface OnVRPlayerInteractionListener in the caller activity and add the following functions:
 <pre>
-void onFragmentCreated();
-void onLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
-void onStarted();
-void onPaused();
-void onEnded();
-void onSkipped();
-void onDurationChanged(Double value);
-void onProgressChanged(Double value);
-void onBufferChanged(Double value);
-void onSeekChanged(Double value);
-void onCardboardChanged(Mode value);
-void onAudioChanged(Double value);
-void onQualityChanged(Quality value);
-void onExpanded();
-void onCollapsed();
-void onLatitudeChanged(Double value);
-void onLongitudeChanged(Double value);
-void onSwitched(String sceneName, Array history);
+void onVRPlayerFragmentCreated();
+
+void onVRPlayerLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
+
+void onVRPlayerStarted();
+
+void onVRPlayerPaused();
+
+void onVRPlayerEnded();
+
+void onVRPlayerSkipped();
+
+void onVRPlayerDurationChanged(Double value);
+
+void onVRPlayerProgressChanged(Double value);
+
+void onVRPlayerBufferChanged(Double value);
+
+void onVRPlayerSeekChanged(Double value);
+
+void onVRPlayerCardboardChanged(Mode value);
+
+void onVRPlayerAudioChanged(Double value);
+
+void onVRPlayerQualityChanged(Quality value);
+
+void onVRPlayerExpanded();
+
+void onVRPlayerCollapsed();
+
+void onVRPlayerLatitudeChanged(Double value);
+
+void onVRPlayerLongitudeChanged(Double value);
+
+void onVRPlayerSwitched(String sceneName, Array history);
 </pre>
 
 
@@ -107,24 +116,41 @@ player.setCardboard(CARDBOARD_MODE);
  
 4.    Implement the interface OnVRPlayerInteractionListener and add the following functions:
 <pre>
-void onFragmentCreated();
-void onLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
-void onStarted();
-void onPaused();
-void onEnded();
-void onSkipped();
-void onDurationChanged(Double value);
-void onProgressChanged(Double value);
-void onBufferChanged(Double value);
-void onSeekChanged(Double value);
-void onCardboardChanged(Mode value);
-void onAudioChanged(Double value);
-void onQualityChanged(Quality value);
-void onExpanded();
-void onCollapsed();
-void onLatitudeChanged(Double value);
-void onLongitudeChanged(Double value);
-void onSwitched(String sceneName, Array history);
+void onVRPlayerFragmentCreated();
+
+void onVRPlayerLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
+
+void onVRPlayerStarted();
+
+void onVRPlayerPaused();
+
+void onVRPlayerEnded();
+
+void onVRPlayerSkipped();
+
+void onVRPlayerDurationChanged(Double value);
+
+void onVRPlayerProgressChanged(Double value);
+
+void onVRPlayerBufferChanged(Double value);
+
+void onVRPlayerSeekChanged(Double value);
+
+void onVRPlayerCardboardChanged(Mode value);
+
+void onVRPlayerAudioChanged(Double value);
+
+void onVRPlayerQualityChanged(Quality value);
+
+void onVRPlayerExpanded();
+
+void onVRPlayerCollapsed();
+
+void onVRPlayerLatitudeChanged(Double value);
+
+void onVRPlayerLongitudeChanged(Double value);
+
+void onVRPlayerSwitched(String sceneName, Array history);
 </pre>
 
 
@@ -165,6 +191,16 @@ import com.omnivirt.vrkit.*;
 <pre>
 QRReaderFragment.launchCardboardQRScanner(ACTIVITY);
 </pre>
+
+## Monetize your app with sponsored VR content
+
+### Get Started
+
+1. Sign up for an account at [OmniVirt](www.omnivirt.com)
+2. Create one or more Ad Spaces for your app (for each Ad Space you can select different content and will get separate reporting)
+3. Select what content to run in each Ad Space (e.g. OmniVirt's network ads)
+4. Add one or more instances of the OmniVirt VRPlayer to your app (one for each Ad Space)
+
 
 
 # Questions?
