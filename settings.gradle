@@ -1,1 +1,1 @@
-include ':app', ':VRKit-release'
+include ':app'
