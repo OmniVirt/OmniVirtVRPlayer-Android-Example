@@ -1,9 +1,6 @@
+# 360° Video Player and Monetization for Android
 
-
-# VR Player and Monetization for App Developers
-
-OmniVirt makes the leading player for 360° video experiences across mobile and desktop. 
-Upload your 360° content to OmniVirt and serve it into your app. 
+OmniVirt makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app in very easy steps.
 
 The OmniVirt advertising platform enables developers and publishers to monetize their apps with engaging VR content.
 Simply integrate the OmniVirt SDK into your iOS, Android or Web application and get paid for presenting sponsored 360° video experiences to your users. Backfill your inventory with premium CPM experiences from OmniVirt’s network of advertisers. We support both 360° and 2D video ads inside VR apps.
@@ -14,17 +11,16 @@ Visit [www.omnivirt.com](https://www.omnivirt.com/) to upload content or create 
 
 ## Add the OmniVirt SDK to your app
  
-1.    Save the VRKit-release.aar file under app module's libs folder (eg: <project>/<app>/libs/VRKit-release.aar)
-2.    Add the below to build.gradle of your "app" module folder (not your project root build.gradle). Note the name in compile line, it is VRKit-release @aar not VRKit-release.aar.
+Add the following lines to build.gradle of your "app" module folder (not your project root build.gradle).
 <pre>
 dependencies {
- 	compile 'com.omnivirt.vrkit: VRKit-release @aar'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.9.0'
 } 
  
 repositories {
- 	flatDir {
-     	dirs 'libs'
-	}
+    maven {
+        url 'https://dl.bintray.com/omnivirt/OmniVirtSDK'
+    }
 }
 </pre>
 
