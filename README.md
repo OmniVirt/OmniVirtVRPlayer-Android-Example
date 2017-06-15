@@ -23,35 +23,35 @@ repositories {
 }
 </pre>
 
-## Use the OmniVirt Player
+## Usage: OmniVirt Player
+
+**OmniVirt Player** provides you a really easy way to embed 360° content on your Android application with just few lines of code.
 
 ### Get Started
 
 1. Sign up for an account at [OmniVirt](www.omnivirt.com)
-2. Upload your VR / 360° photo or video at [OmniVirt](https://www.omnivirt.com/).
-3. OmniVirt will assign an ID to your content as part of the upload. Copy the content ID and pass it to the VRPlayer's launch method.
+2. Upload your VR / 360° photo or video on [OmniVirt](https://www.omnivirt.com/).
+3. Get the **Content ID** assigned to your content.
 
-### Add a Full Screen VRPlayer
- 
-1. Add the following to AndroidManifest.xml
+### Method 1: Fullscreen VRPlayer
+
+Add the following to `AndroidManifest.xml`
 ```xml
 <activity android:name="com.omnivirt.vrkit.FullscreenVRPlayer"
     android:configChanges="orientation|screenSize"></activity>
 ```
 
-2. Import vrkit into your code
-<pre>
-import com.omnivirt.vrkit.*;
-</pre>
-3.    To open fullscreen player with adspace use the following code:
+To open fullscreen player with adspace, use the following code:
 <pre>
 FullscreenVRPlayer.launch(YOUR_ACTIVITY, CONTENT_ID, AUTOPLAY, CARDBOARD_MODE, ADSPACE_ID)
 </pre>
-4.    To open fullscreen player with no adspace use the following code instead:
+
+To open fullscreen player **without** adspace, use the following code instead:
 <pre>
 FullscreenVRPlayer.launch(YOUR_ACTIVITY, CONTENT_ID, AUTOPLAY, CARDBOARD_MODE);
 </pre>
-5.    Implement interface OnVRPlayerInteractionListener in the caller activity and add the following functions:
+
+Implement interface OnVRPlayerInteractionListener in the caller activity and add the following functions:
 <pre>
 void onVRPlayerFragmentCreated();
 
@@ -91,7 +91,7 @@ void onVRPlayerSwitched(String sceneName, Array history);
 </pre>
 
 
-### Embed a VRPlayer into an activity
+### Method 2: Embed a VRPlayer into an activity
  
 1.    Add this fragment to your activity layout xml file
 ```xml
