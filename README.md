@@ -1,12 +1,10 @@
-# OmniVirt Player: 360° Video Player and Monetization for Android
+# OmniVirt VR Player: 360° Video Player and Monetization for Android
 
-**OmniVirt** makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app in very easy steps.
+**OmniVirt** makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app with few easy steps.
 
-The OmniVirt advertising platform enables developers and publishers to monetize their apps with engaging VR content.
-Simply integrate the OmniVirt SDK into your iOS, Android or Web application and get paid for presenting sponsored 360° video experiences to your users. Backfill your inventory with premium CPM experiences from OmniVirt’s network of advertisers. We support both 360° and 2D video ads inside VR apps.
+OmniVirt also provides you an advertising platform enables developers and publishers to monetize their apps with engaging VR content. Simply integrate the OmniVirt SDK into your iOS, Android or Web application and get paid for presenting sponsored 360° video experiences to your users. Backfill your inventory with premium CPM experiences from OmniVirt’s network of advertisers. We support both 360° and 2D video ads inside VR apps.
 
-Visit [omnivirt.com](https://omnivirt.com/) to upload content or create ad space. Contact us for more info at [contact@omnivirt.com](mailto:contact@omnivirt.com).
-
+Visit [omnivirt.com](https://omnivirt.com/) to upload your VR content or create ad space to start monetizing. Contact us for more info at [contact@omnivirt.com](mailto:contact@omnivirt.com).
 
 ## Add the OmniVirt SDK to your app
  
@@ -25,15 +23,19 @@ repositories {
 
 ## Usage
 
-**OmniVirt Player** provides you a really easy way to embed 360° content on your Android application with just few lines of code.
+**OmniVirt VR Player** for Android provides you a really easy way to embed 360° content on your Android application with just few lines of code.
 
 ### Get Started
 
 1. Sign up for an account at [OmniVirt](www.omnivirt.com)
 2. Upload your VR / 360° photo or video on [OmniVirt](https://www.omnivirt.com/).
-3. Get the **Content ID** assigned to your content.
+3. Collect the **Content ID** assigned to your content.
+
+There are two methods that you can use OmniVirt VR Player on your application.
 
 ### Method 1: Launch a Fullscreen VR Player
+
+This method lets you play a VR content with just a single line of code !
 
 First, add the following code to `AndroidManifest.xml`.
 ```xml
@@ -50,8 +52,10 @@ FullscreenVRPlayer.launch(MainActivity.this,
                           );
 ```
 
+That's all !
+
 #### Extra
-If you also would like to monetize with your 360° content, you can create an **Ad Space** on [OmniVirt](www.omnivirt.com) and pass the **Ad Space ID** acquired to the command like below.
+Would like to earn money from your 360° content? You can create an **Ad Space** on [OmniVirt](www.omnivirt.com) and pass the **Ad Space ID** acquired to the command like shown below to enable ad on the player.
 
 ```java
 FullscreenVRPlayer.launch(MainActivity.this,
@@ -62,121 +66,147 @@ FullscreenVRPlayer.launch(MainActivity.this,
                           );
 ```
 
+Once you set it up correctly, user will sometime see an ad among the player and that will become your revenue !
+
 #### Player Callback
 
-Callback could be retrieved by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
+Any change on the player could be retrieved by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
 
 ```java
-/**
- * Called when VR Player Fragment embedded inside the Activity is created
- *************************************************************************/
-void onVRPlayerFragmentCreated();
+public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInteractionListener {
 
-/**
- * Called when VR Player is loaded
- **********************************/
-void onVRPlayerLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
+    ...
 
-/**
- * Called when VR Player has started playing
- ********************************************/
-void onVRPlayerStarted();
+    /**
+     * Called when VR Player Fragment embedded inside the Activity is created
+     *************************************************************************/
+    void onVRPlayerFragmentCreated() {    
+    }
+    
+    /**
+     * Called when VR Player is loaded
+     **********************************/
+    void onVRPlayerLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode) {    
+    }
+    
+    /**
+     * Called when VR Player has started playing
+     ********************************************/
+    void onVRPlayerStarted() {
+    }
+    
+    /**
+     * Called when VR Player is paused
+     **********************************/
+    void onVRPlayerPaused() {
+    }
+    
+    /**
+     * Called when VR Player has finished playing
+     *********************************************/
+    void onVRPlayerEnded() {
+    }
+    
+    /**
+     * Called when video has been skipped for the next one
+     ******************************************************/
+    void onVRPlayerSkipped() {
+    }
+    
+    /**
+     * Called when video duration has been changed
+     *
+     *   value - new duration in seconds
+     **********************************************/
+    void onVRPlayerDurationChanged(Double value) {
+    }
+    
+    /**
+     * Called when video progress has been changed
+     *
+     *   value - current progress in seconds
+     **********************************************/
+    void onVRPlayerProgressChanged(Double value) {
+    }
+    
+    /**
+     * Called when video has been buffered
+     *
+     *   bufferLength - buffer length in seconds
+     ********************************************/
+    void onVRPlayerBufferChanged(Double bufferLength) {
+    }
+    
+    /**
+     * Called when video has been seeked
+     *
+     *   value - seeked position in second
+     *****************************************/
+    void onVRPlayerSeekChanged(Double value) {
+    }
+    
+    /**
+     * Called when Cardboard mode has been changed
+     *
+     *   mode - new Cardboard mode (ON, OFF)
+     **********************************************/
+    void onVRPlayerCardboardChanged(Mode mode) {
+    }
+    
+    /**
+     * Called when volume level has been changed
+     *
+     *   volume - new volume level
+     ********************************************/
+    void onVRPlayerVolumeChanged(Double volume) {
+    }
+    
+    /**
+     * Called when video quality has been changed
+     *
+     *  quality - new video quality (QualitySD, QualityHD, QualitySHD and Quality4K)
+     ******************************************************************************/
+    void onVRPlayerQualityChanged(Quality quality) {
+    }
+    
+    /**
+     * Called when VR player has been expanded fullscreen
+     *****************************************************/
+    void onVRPlayerExpanded() {
+    }    
 
-/**
- * Called when VR Player is paused
- **********************************/
-void onVRPlayerPaused();
+    /**
+     * Called when VR player has been restored to embedded size
+     ***********************************************************/
+    void onVRPlayerCollapsed() {
+    }
+    
+    /**
+     * Called when video angle in y-axis has been changed
+     *
+     *   latitude - new angle in degree
+     *****************************************************/
+    void onVRPlayerLatitudeChanged(Double latitude) {
+    }    
 
-/**
- * Called when VR Player has finished playing
- *********************************************/
-void onVRPlayerEnded();
+    /**
+     * Called when video angle in x-axis has been changed
+     *
+     *   longitude - new angle in degree
+     *****************************************************/
+    void onVRPlayerLongitudeChanged(Double longitude) {
+    }
+    
+    /**
+     * Called when video scene has been switched
+     *
+     *   scaneName - the name of new scene
+     *   history - list of scenes navigated
+     *****************************************/
+    void onVRPlayerSwitched(String sceneName, Array history) {
+    }
 
-/**
- * Called when video has been skipped for the next one
- ******************************************************/
-void onVRPlayerSkipped();
-
-/**
- * Called when video duration has been changed
- *
- *   value - new duration in seconds
- **********************************************/
-void onVRPlayerDurationChanged(Double value);
-
-/**
- * Called when video progress has been changed
- *
- *   value - current progress in seconds
- **********************************************/
-void onVRPlayerProgressChanged(Double value);
-
-/**
- * Called when video has been buffered
- *
- *   bufferLength - buffer length in seconds
- ********************************************/
-void onVRPlayerBufferChanged(Double bufferLength);
-
-/**
- * Called when video has been seeked
- *
- *   value - seeked position in second
- *****************************************/
-void onVRPlayerSeekChanged(Double value);
-
-/**
- * Called when Cardboard mode has been changed
- *
- *   mode - new Cardboard mode (ON, OFF)
- **********************************************/
-void onVRPlayerCardboardChanged(Mode mode);
-
-/**
- * Called when volume level has been changed
- *
- *   volume - new volume level
- ********************************************/
-void onVRPlayerVolumeChanged(Double volume);
-
-/**
- * Called when video quality has been changed
- *
- *  quality - new video quality (QualitySD, QualityHD, QualitySHD and Quality4K)
- ******************************************************************************/
-void onVRPlayerQualityChanged(Quality quality);
-
-/**
- * Called when VR player has been expanded fullscreen
- *****************************************************/
-void onVRPlayerExpanded();
-
-/**
- * Called when VR player has been restored to embedded size
- ***********************************************************/
-void onVRPlayerCollapsed();
-
-/**
- * Called when video angle in y-axis has been changed
- *
- *   latitude - new angle in degree
- *****************************************************/
-void onVRPlayerLatitudeChanged(Double latitude);
-
-/**
- * Called when video angle in x-axis has been changed
- *
- *   longitude - new angle in degree
- *****************************************************/
-void onVRPlayerLongitudeChanged(Double longitude);
-
-/**
- * Called when video scene has been switched
- *
- *   scaneName - the name of new scene
- *   history - list of scenes navigated
- *****************************************/
-void onVRPlayerSwitched(String sceneName, Array history);
+}
 ```
 
 
