@@ -13,7 +13,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to upload your VR content or create 
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.10.0'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.10.1'
 } 
  
 repositories {
@@ -29,15 +29,17 @@ repositories {
 
 ### Get Started
 
-1. Sign up for an account at [OmniVirt](www.omnivirt.com)
-2. Upload your VR / 360° photo or video on [OmniVirt](https://www.omnivirt.com/).
-3. Collect the **Content ID** assigned to your content.
+1. **Sign up** for an account at [OmniVirt](www.omnivirt.com)
+2. **Upload** your VR / 360° photo or video on [OmniVirt](https://www.omnivirt.com/).
+3. Keep the **Content ID** assigned to your content for further use.
 
-There are two methods that you can use OmniVirt VR Player on your application.
+Now the content is ready. There are two methods that you can use OmniVirt VR Player to play your VR content on your application.
 
 ### Method 1: Launch a Fullscreen VR Player
 
 This method lets you play a VR content with just a single line of code !
+
+#### Usage
 
 First, add the following code to `AndroidManifest.xml`.
 ```xml
@@ -54,9 +56,9 @@ FullscreenVRPlayer.launch(MainActivity.this,
                           );
 ```
 
-That's all !
+And ... done ! That's all !
 
-#### Extra
+#### Extra: Earn Money
 Would like to earn money from your 360° content? You can create an **Ad Space** on [OmniVirt](www.omnivirt.com) and pass the **Ad Space ID** acquired to the command like shown below to enable ad on the player.
 
 ```java
@@ -64,15 +66,15 @@ FullscreenVRPlayer.launch(MainActivity.this,
                           CONTENT_ID, // Replace with your Content ID
                           true,       // Autoplay
                           false,      // Run in Cardboard mode
-                          ADSPACE_ID
+                          ADSPACE_ID  // Replace with your Ad Space ID
                           );
 ```
 
-Once you set it up correctly, user will sometime see an ad among the player and that will become your revenue !
+Once you set it up correctly, user will sometime see an ad among the player and that will turn into your revenue !
 
 #### Player Callback
 
-Any change on the player could be detected by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
+Any change on the player could be detected by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the example.
 
 ```java
 public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInteractionListener {
@@ -220,118 +222,56 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
 ```
 
 
-### Method 2: Embed a VRPlayer into an activity
+### Method 2: Embed a VR Player on an Activity with `VRPlayerFragment`
  
-1.    Add this fragment to your activity layout xml file
+OmniVirt VR Player also provides you a Fragment that allows you to embed a VR Player on your Activity.
+
+#### Usage
+ 
+Add this `fragment` tag to your activity layout xml file.
 ```xml
 <fragment
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="com.omnivirt.vrkit.VRPlayerFragment"
-	android:id="@+id/vrplayer_fragment" />
-```
- 
-2.    Import vrkit into your code
-```java
-import com.omnivirt.vrkit.*;
+    android:id="@+id/vrplayer_fragment" />
 ```
 
-3.    Add the following snippet to your activity 
+To start playing, add the following snippet to your activity and replace `CONTENT_ID` with your VR Content's.
 ```java
-VRPlayerFragment  player = (VRPlayerFragment)this.getFragmentManager().findFragmentById(R.id.vrplayer_fragment);
+VRPlayerFragment player = (VRPlayerFragment) getFragmentManager()
+    .findFragmentById(R.id.vrplayer_fragment);
 player.load(CONTENT_ID);
-player.setCardboard(CARDBOARD_MODE);
+player.setCardboard(Mode.OFF);
 ```
  
-4.    Implement the interface OnVRPlayerInteractionListener and add the following functions:
-<pre>
-void onVRPlayerFragmentCreated();
+Player callback could also be retrieved by the same approach as sample above.
 
-void onVRPlayerLoaded(Integer maximumQuality, Quality currentQuality, Mode cardboardMode);
+#### Support Library v4 Fragment
 
-void onVRPlayerStarted();
+Support Library v4 Fragment is also available in `com.omnivirt.vrkit.VRPlayerSupportFragment` class. Usage is still be the same as stock Fragment one.
 
-void onVRPlayerPaused();
-
-void onVRPlayerEnded();
-
-void onVRPlayerSkipped();
-
-void onVRPlayerDurationChanged(Double value);
-
-void onVRPlayerProgressChanged(Double value);
-
-void onVRPlayerBufferChanged(Double value);
-
-void onVRPlayerSeekChanged(Double value);
-
-void onVRPlayerCardboardChanged(Mode value);
-
-void onVRPlayerAudioChanged(Double value);
-
-void onVRPlayerQualityChanged(Quality value);
-
-void onVRPlayerExpanded();
-
-void onVRPlayerCollapsed();
-
-void onVRPlayerLatitudeChanged(Double value);
-
-void onVRPlayerLongitudeChanged(Double value);
-
-void onVRPlayerSwitched(String sceneName, Array history);
-</pre>
+```xml
+<fragment
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:name="com.omnivirt.vrkit.VRPlayerSupportFragment"
+    android:id="@+id/vrplayer_fragment" />
+```
 
 
-### Add a VR Ad
+## QR Code for Cardboard Alignment
  
-1.    Import vrkit into your code
-<pre>
-import com.omnivirt.vrkit.*;
-</pre>
-	
-2.    Use the following code to load a VRAd
-<pre>
-VRAd  vrAd = new VRAd(ADSPACE_ID, ACTIVITY);
-vrAd.load();
-</pre>
-3.    Implement the OnVRAdInteractionListener interface and add the following functions
+To launch QR Code scanner to scan a QR Code comes along with the Cardboard, call this following function.
+```java
+// Stock Fragment
+QRReaderFragment.launchCardboardQRScanner(MainActivity.this);
 
-<pre>
-void onAdStatusChanged(VRAd instance, AdState status);
-</pre>
-4.    Listen for the status of the ad to be "Ready" before showing your ad with
-<pre>
-vrAd.show(CARDBOARD_MODE);
-</pre>
- 
- 
-### Scan a QR Code
- 
-1.    Add the following to your app's build.gradle
-<pre>
-compile 'com.google.android.gms:play-services:7.8.0'
-</pre>
-2.    Import vrkit into your code
-<pre>
-import com.omnivirt.vrkit.*;
-</pre>
-3.    Call the following function to open QR Code scanner
-<pre>
-QRReaderFragment.launchCardboardQRScanner(ACTIVITY);
-</pre>
-
-## Monetize your app with sponsored VR content
-
-### Get Started
-
-1. Sign up for an account at [OmniVirt](www.omnivirt.com)
-2. Create one or more Ad Spaces for your app (for each Ad Space you can select different content and will get separate reporting)
-3. Select what content to run in each Ad Space (e.g. OmniVirt's network ads)
-4. Add one or more instances of the OmniVirt VRPlayer to your app (one for each Ad Space)
-
+// Support Fragment v4
+QRReaderSupportFragment.launchCardboardQRScanner(MainActivity.this);
+```
 
 
 # Questions?
 
-Please email us at [contact@omnivirt.com](mailto:contact@omnivirt.com)
+Please feel free to email us at [contact@omnivirt.com](mailto:contact@omnivirt.com) !
