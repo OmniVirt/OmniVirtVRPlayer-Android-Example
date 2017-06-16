@@ -66,7 +66,7 @@ FullscreenVRPlayer.launch(MainActivity.this,
 
 Callback could be retrieved by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
 
-<pre>
+```java
 /**
  * Called when VR Player Fragment embedded inside the Activity is created
  *************************************************************************/
@@ -177,7 +177,7 @@ void onVRPlayerLongitudeChanged(Double value);
  *   history - list of scenes navigated
  *****************************************/
 void onVRPlayerSwitched(String sceneName, Array history);
-</pre>
+```
 
 
 ### Method 2: Embed a VRPlayer into an activity
