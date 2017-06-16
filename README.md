@@ -70,12 +70,20 @@ Once you set it up correctly, user will sometime see an ad among the player and 
 
 #### Player Callback
 
-Any change on the player could be retrieved by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
+Any change on the player could be detected by implementing `OnVRPlayerInteractionListener` interface inside the **caller Activity**. Here is the list of callback functions available.
 
 ```java
 public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInteractionListener {
 
     ...
+    
+    private void play() {
+        FullscreenVRPlayer.launch(MainActivity.this,
+                                  24,
+                                  true,       // Autoplay
+                                  false       // Run in Cardboard mode
+                                  );
+    }
 
     /**
      * Called when VR Player Fragment embedded inside the Activity is created
