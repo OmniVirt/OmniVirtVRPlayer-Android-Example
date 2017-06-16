@@ -1,6 +1,6 @@
 # OmniVirt VR Player: 360° Video Player and Monetization for Android
 
-![Screenshot](https://github.com/OmniVirt/OmniVirtVRPlayer-Android-Example/blob/master/screenshot2.jpg?raw=true)
+![Screenshot](https://github.com/OmniVirt/OmniVirtVRPlayer-Android-Example/blob/master/screenshot3.jpg?raw=true)
 
 **OmniVirt** makes the leading player for 360° video experiences across mobile and desktop. Upload your 360° content to OmniVirt and serve it into your app with few easy steps.
 
