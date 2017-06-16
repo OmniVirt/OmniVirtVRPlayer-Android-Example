@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.omnivirt.vrkitexample.PlayerActivity"
+    tools:context="com.omnivirt.example.com.omnivirt.vrplayer.example.PlayerActivity"
     android:orientation="vertical">
 
     <LinearLayout

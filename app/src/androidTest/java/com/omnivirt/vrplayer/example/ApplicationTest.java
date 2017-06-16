@@ -1,4 +1,4 @@
-package com.omnivirt.vrkitexample;
+package com.omnivirt.vrplayer.example;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

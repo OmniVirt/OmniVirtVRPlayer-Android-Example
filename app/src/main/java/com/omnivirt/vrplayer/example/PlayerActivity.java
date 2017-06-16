@@ -1,24 +1,14 @@
-package com.omnivirt.vrkitexample;
+package com.omnivirt.vrplayer.example;
 
 import android.support.v7.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.games.Player;
-import com.omnivirt.vrkit.AdState;
 import com.omnivirt.vrkit.Mode;
-import com.omnivirt.vrkit.OnVRAdInteractionListener;
 import com.omnivirt.vrkit.OnVRPlayerInteractionListener;
 import com.omnivirt.vrkit.Quality;
-import com.omnivirt.vrkit.VRAd;
-import com.omnivirt.vrkit.VRPlayerFragment;
 import com.omnivirt.vrkit.VRPlayerSupportFragment;
 
 import java.lang.reflect.Array;
