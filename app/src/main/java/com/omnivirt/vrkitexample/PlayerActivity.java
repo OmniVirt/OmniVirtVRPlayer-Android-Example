@@ -26,8 +26,6 @@ import java.lang.reflect.Array;
 public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInteractionListener {
     private VRPlayerSupportFragment mPlayer = null;
     private TextView mTextView = null;
-    private Button mAdButton = null;
-    private VRAd mVrAd = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,106 +39,7 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
         // Use this method to disable interface
         //
         // mPlayer.setInterface(Mode.OFF);
-
-        // For manually creating VRplayer without storyboard, please uncomment the following code.
-        //
-        // mPlayer = VRPlayerFragment.newInstance(this);
-
-        // Creating VR Ad instance
-        //
-        mVrAd = new VRAd(1, vrAdInteractionListener);
-
-        // Loading and starting VR Ad using a button
-        //
-        mAdButton = (Button) this.findViewById(R.id.start_ad_button);
-        mAdButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String title = mAdButton.getText().toString();
-                if (title.equals("Load Ad")) {
-                    // Load Ad
-                    //
-                    mVrAd.load(PlayerActivity.this);
-                } else if (title.equals("Start Ad")) {
-                    // Select the option to turn on / off Cardboard mode for ads
-                    //
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivity.this);
-                    builder.setMessage("Please select Cardboard mode")
-                            .setCancelable(false)
-                            .setPositiveButton("OFF", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // Start Ad without cardboard
-                                    //
-                                    mVrAd.show(Mode.OFF);
-                                }
-                            })
-                            .setNegativeButton("ON", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // Start Ad with cardboard
-                                    //
-                                    mVrAd.show(Mode.ON);
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-            }
-        });
     }
-
-    @Override
-    public void onBackPressed() {
-        // This method will close VR Ad when user hit back button.
-        //
-        if (mVrAd.getStatus() == AdState.Showing) {
-            mVrAd.unload();
-
-            // Uncomment this line to prevent player activity from closing.
-            return;
-        }
-
-        super.onBackPressed();
-    }
-
-    ////////////////////////
-    // Listener for VRAd
-    ////////////////////////
-
-    private OnVRAdInteractionListener vrAdInteractionListener = new OnVRAdInteractionListener() {
-        @Override
-        public void onAdStatusChanged (VRAd instance, AdState status){
-            switch (status) {
-                case None:
-                    break;
-                case Loading:
-                    PlayerActivity.this.log("Ad state is loading");
-                    mAdButton.setText("Loading Ad");
-                    mAdButton.setEnabled(false);
-                    break;
-                case Ready:
-                    PlayerActivity.this.log("Ad state is ready");
-                    mAdButton.setText("Start Ad");
-                    mAdButton.setEnabled(true);
-                    break;
-                case Showing:
-                    PlayerActivity.this.log("Ad state is showing");
-                    mAdButton.setText("Showing Ad");
-                    mAdButton.setEnabled(false);
-                    mPlayer.setIdle(Mode.ON); // Idling any video player to reserve GPU resources for VR Ad
-                    break;
-                case Completed:
-                    PlayerActivity.this.log("Ad state is completed");
-                    mAdButton.setText("Load Ad");
-                    mAdButton.setEnabled(true);
-                    mPlayer.setIdle(Mode.OFF); // Resume the video player
-                    break;
-                case Failed:
-                    PlayerActivity.this.log("Ad state is failed");
-                    mAdButton.setText("Load Ad");
-                    mAdButton.setEnabled(true);
-                    break;
-            }
-        }
-    };
 
     ////////////////////////////
     // Listener for VRPlayer
