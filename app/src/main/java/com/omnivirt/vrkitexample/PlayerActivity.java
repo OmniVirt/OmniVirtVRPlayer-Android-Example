@@ -177,23 +177,23 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
     }
 
     @Override
-    public void onVRPlayerDurationChanged(Double aDouble) {
-        this.log("Duration changed to " + aDouble.toString());
+    public void onVRPlayerDurationChanged(Double duration) {
+        this.log("Duration changed to " + duration.toString());
     }
 
     @Override
-    public void onVRPlayerProgressChanged(Double aDouble) {
-        this.log("Progress changed to " + aDouble.toString());
+    public void onVRPlayerProgressChanged(Double progress) {
+        this.log("Progress changed to " + progress.toString());
     }
 
     @Override
-    public void onVRPlayerBufferChanged(Double aDouble) {
-        this.log("Buffer changed to " + aDouble.toString());
+    public void onVRPlayerBufferChanged(Double bufferLength) {
+        this.log("Buffer changed to " + bufferLength.toString());
     }
 
     @Override
-    public void onVRPlayerSeekChanged(Double aDouble) {
-        this.log("Seek changed to " + aDouble.toString());
+    public void onVRPlayerSeekChanged(Double position) {
+        this.log("Seek changed to " + position.toString());
     }
 
     @Override
@@ -202,8 +202,8 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
     }
 
     @Override
-    public void onVRPlayerVolumeChanged(Double aDouble) {
-        this.log("Volume changed to " + aDouble.toString());
+    public void onVRPlayerVolumeChanged(Double volume) {
+        this.log("Volume changed to " + volume.toString());
     }
 
     @Override
@@ -240,18 +240,18 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
     }
 
     @Override
-    public void onVRPlayerLatitudeChanged(Double aDouble) {
-        this.log("Latitude changed to " + aDouble.toString());
+    public void onVRPlayerLatitudeChanged(Double latitude) {
+        this.log("Latitude changed to " + latitude.toString());
     }
 
     @Override
-    public void onVRPlayerLongitudeChanged(Double aDouble) {
-        this.log("Longitude changed to " + aDouble.toString());
+    public void onVRPlayerLongitudeChanged(Double longitude) {
+        this.log("Longitude changed to " + longitude.toString());
     }
 
     @Override
-    public void onVRPlayerSwitched(String s, Array array) {
-        this.log("Swicthed scene to " + s);
+    public void onVRPlayerSwitched(String sceneName, Array history) {
+        this.log("Swicthed scene to " + sceneName);
     }
 
     private void log(final String text) {
