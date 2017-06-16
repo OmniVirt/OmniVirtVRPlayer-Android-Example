@@ -11,9 +11,9 @@ Visit [omnivirt.com](https://omnivirt.com/) to upload content or create ad space
 ## Add the OmniVirt SDK to your app
  
 Add the following lines to `build.gradle` of your application module.
-<pre>
+```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.9.0'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.10.0'
 } 
  
 repositories {
@@ -21,7 +21,7 @@ repositories {
         url 'https://dl.bintray.com/omnivirt/OmniVirtSDK'
     }
 }
-</pre>
+```
 
 ## Usage
 
@@ -42,25 +42,25 @@ First, add the following code to `AndroidManifest.xml`.
 ```
 
 To launch a fullscreen player, simply call:
-<pre>
+```java
 FullscreenVRPlayer.launch(MainActivity.this,
                           CONTENT_ID, // Replace with your Content ID
                           true,       // Autoplay
                           false       // Run in Cardboard mode
                           );
-</pre>
+```
 
 #### Extra
 If you also would like to monetize with your 360° content, you can create an **Ad Space** on [OmniVirt](www.omnivirt.com) and pass the **Ad Space ID** acquired to the command like below.
 
-<pre>
+```java
 FullscreenVRPlayer.launch(MainActivity.this,
                           CONTENT_ID, // Replace with your Content ID
                           true,       // Autoplay
                           false,      // Run in Cardboard mode
                           ADSPACE_ID
                           );
-</pre>
+```
 
 #### Player Callback
 
@@ -114,9 +114,9 @@ void onVRPlayerProgressChanged(Double value);
 /**
  * Called when video has been buffered
  *
- *   value - buffer length in seconds
- *****************************************/
-void onVRPlayerBufferChanged(Double value);
+ *   bufferLength - buffer length in seconds
+ ********************************************/
+void onVRPlayerBufferChanged(Double bufferLength);
 
 /**
  * Called when video has been seeked
@@ -128,23 +128,23 @@ void onVRPlayerSeekChanged(Double value);
 /**
  * Called when Cardboard mode has been changed
  *
- *   value - new Cardboard mode (ON, OFF)
+ *   mode - new Cardboard mode (ON, OFF)
  **********************************************/
-void onVRPlayerCardboardChanged(Mode value);
+void onVRPlayerCardboardChanged(Mode mode);
 
 /**
  * Called when volume level has been changed
  *
- *   value - new volume level
- *****************************************/
-void onVRPlayerAudioChanged(Double value);
+ *   volume - new volume level
+ ********************************************/
+void onVRPlayerVolumeChanged(Double volume);
 
 /**
  * Called when video quality has been changed
  *
- *  value - new video quality (QualitySD, QualityHD, QualitySHD and Quality4K)
+ *  quality - new video quality (QualitySD, QualityHD, QualitySHD and Quality4K)
  ******************************************************************************/
-void onVRPlayerQualityChanged(Quality value);
+void onVRPlayerQualityChanged(Quality quality);
 
 /**
  * Called when VR player has been expanded fullscreen
@@ -159,16 +159,16 @@ void onVRPlayerCollapsed();
 /**
  * Called when video angle in y-axis has been changed
  *
- *   value - new angle in degree
+ *   latitude - new angle in degree
  *****************************************************/
-void onVRPlayerLatitudeChanged(Double value);
+void onVRPlayerLatitudeChanged(Double latitude);
 
 /**
  * Called when video angle in x-axis has been changed
  *
- *   value - new angle in degree
+ *   longitude - new angle in degree
  *****************************************************/
-void onVRPlayerLongitudeChanged(Double value);
+void onVRPlayerLongitudeChanged(Double longitude);
 
 /**
  * Called when video scene has been switched
@@ -192,16 +192,16 @@ void onVRPlayerSwitched(String sceneName, Array history);
 ```
  
 2.    Import vrkit into your code
-<pre>
+```java
 import com.omnivirt.vrkit.*;
-</pre>
+```
 
 3.    Add the following snippet to your activity 
-<pre>
+```java
 VRPlayerFragment  player = (VRPlayerFragment)this.getFragmentManager().findFragmentById(R.id.vrplayer_fragment);
 player.load(CONTENT_ID);
 player.setCardboard(CARDBOARD_MODE);
-</pre>
+```
  
 4.    Implement the interface OnVRPlayerInteractionListener and add the following functions:
 <pre>

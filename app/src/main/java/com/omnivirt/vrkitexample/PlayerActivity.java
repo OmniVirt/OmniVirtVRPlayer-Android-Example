@@ -202,8 +202,8 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
     }
 
     @Override
-    public void onVRPlayerAudioChanged(Double aDouble) {
-        this.log("Audio changed to " + aDouble.toString());
+    public void onVRPlayerVolumeChanged(Double aDouble) {
+        this.log("Volume changed to " + aDouble.toString());
     }
 
     @Override
