@@ -1,4 +1,4 @@
-# OmniVirt VR Player: 360° Video Player and Monetization for Android
+# OmniVirt VR Player: 360° Video Player for Android
 
 ![Screenshot](https://github.com/OmniVirt/OmniVirtVRPlayer-Android-Example/blob/master/screenshot3.jpg?raw=true)
 
