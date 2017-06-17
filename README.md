@@ -1,4 +1,5 @@
 # OmniVirt VR Player: 360° Video Player for Android
+![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)
 
 ![Screenshot](https://github.com/OmniVirt/OmniVirtVRPlayer-Android-Example/blob/master/screenshot4.jpg?raw=true)
 
