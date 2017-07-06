@@ -29,7 +29,7 @@ repositories {
 
 ### Get Started
 
-1. **Sign up** for an account at [OmniVirt](www.omnivirt.com)
+1. **Sign up** for an account at [OmniVirt](https://www.omnivirt.com)
 2. **Upload** your VR / 360° photo or video on [OmniVirt](https://www.omnivirt.com/).
 3. Keep the **Content ID** assigned to your content for further use.
 
