@@ -52,7 +52,7 @@ To launch a fullscreen player, simply call:
 FullscreenVRPlayerActivity.launch(MainActivity.this,
                                   CONTENT_ID, // Replace with your Content ID
                                   true,       // Autoplay
-                                  false       // Run in Cardboard mode
+                                  Mode.ON     // Run in Cardboard mode
                                   );
 ```
 
@@ -65,7 +65,7 @@ Would like to earn money from your 360° content? You can create an **Ad Space**
 FullscreenVRPlayerActivity.launch(MainActivity.this,
                                   CONTENT_ID, // Replace with your Content ID
                                   true,       // Autoplay
-                                  false,      // Run in Cardboard mode
+                                  Mode.ON,    // Run in Cardboard mode
                                   ADSPACE_ID  // Replace with your Ad Space ID
                                   );
 ```
@@ -85,7 +85,7 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
         FullscreenVRPlayerActivity.launch(MainActivity.this,
                                           24,
                                           true,       // Autoplay
-                                          false       // Run in Cardboard mode
+                                          Mode.ON     // Run in Cardboard mode
                                           );
     }
 
