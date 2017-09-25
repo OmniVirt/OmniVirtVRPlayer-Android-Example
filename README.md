@@ -50,10 +50,10 @@ First, add the following code to `AndroidManifest.xml`.
 To launch a fullscreen player, simply call:
 ```java
 FullscreenVRPlayerActivity.launch(MainActivity.this,
-                                 CONTENT_ID, // Replace with your Content ID
-                                 true,       // Autoplay
-                                 false       // Run in Cardboard mode
-                                 );
+                                  CONTENT_ID, // Replace with your Content ID
+                                  true,       // Autoplay
+                                  false       // Run in Cardboard mode
+                                  );
 ```
 
 And ... done ! That's all !
