@@ -43,17 +43,17 @@ This method lets you play a VR content with just a single line of code !
 
 First, add the following code to `AndroidManifest.xml`.
 ```xml
-<activity android:name="com.omnivirt.vrkit.FullscreenVRPlayer"
+<activity android:name="com.omnivirt.vrkit.FullscreenVRPlayerActivity"
     android:configChanges="orientation|screenSize"></activity>
 ```
 
 To launch a fullscreen player, simply call:
 ```java
-FullscreenVRPlayer.launch(MainActivity.this,
-                          CONTENT_ID, // Replace with your Content ID
-                          true,       // Autoplay
-                          false       // Run in Cardboard mode
-                          );
+FullscreenVRPlayerActivity.launch(MainActivity.this,
+                                 CONTENT_ID, // Replace with your Content ID
+                                 true,       // Autoplay
+                                 false       // Run in Cardboard mode
+                                 );
 ```
 
 And ... done ! That's all !
@@ -62,12 +62,12 @@ And ... done ! That's all !
 Would like to earn money from your 360° content? You can create an **Ad Space** on [OmniVirt](www.omnivirt.com) and pass the **Ad Space ID** acquired to the command like shown below to enable ad on the player.
 
 ```java
-FullscreenVRPlayer.launch(MainActivity.this,
-                          CONTENT_ID, // Replace with your Content ID
-                          true,       // Autoplay
-                          false,      // Run in Cardboard mode
-                          ADSPACE_ID  // Replace with your Ad Space ID
-                          );
+FullscreenVRPlayerActivity.launch(MainActivity.this,
+                                  CONTENT_ID, // Replace with your Content ID
+                                  true,       // Autoplay
+                                  false,      // Run in Cardboard mode
+                                  ADSPACE_ID  // Replace with your Ad Space ID
+                                  );
 ```
 
 Once you set it up correctly, user will sometime see an ad among the player and that will turn into your revenue !
@@ -82,11 +82,11 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
     ...
     
     private void play() {
-        FullscreenVRPlayer.launch(MainActivity.this,
-                                  24,
-                                  true,       // Autoplay
-                                  false       // Run in Cardboard mode
-                                  );
+        FullscreenVRPlayerActivity.launch(MainActivity.this,
+                                          24,
+                                          true,       // Autoplay
+                                          false       // Run in Cardboard mode
+                                          );
     }
 
     /**
