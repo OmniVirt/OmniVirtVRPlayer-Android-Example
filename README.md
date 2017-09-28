@@ -13,7 +13,7 @@ Visit [omnivirt.com](https://omnivirt.com/) to upload your VR content. Contact u
 Add the following lines to `build.gradle` of your application module.
 ```
 dependencies {
-    compile 'com.omnivirt:omnivirt-android-sdk:0.12.0'
+    compile 'com.omnivirt:omnivirt-android-sdk:0.12.1'
 } 
  
 repositories {
