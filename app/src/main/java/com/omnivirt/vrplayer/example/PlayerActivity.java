@@ -37,6 +37,8 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
 
     @Override
     public void onVRPlayerFragmentCreated() {
+        if (mPlayer == null)
+            mPlayer = (VRPlayerSupportFragment) this.getSupportFragmentManager().findFragmentById(R.id.vrplayer_fragment);
         mPlayer.load(24);
     }
 
