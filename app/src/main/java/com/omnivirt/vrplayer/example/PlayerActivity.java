@@ -74,12 +74,12 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
 
     @Override
     public void onVRPlayerProgressChanged(Double progress) {
-        this.log("Progress changed to " + progress.toString());
+//        this.log("Progress changed to " + progress.toString());
     }
 
     @Override
     public void onVRPlayerBufferChanged(Double bufferLength) {
-        this.log("Buffer changed to " + bufferLength.toString());
+//        this.log("Buffer changed to " + bufferLength.toString());
     }
 
     @Override
@@ -132,12 +132,12 @@ public class PlayerActivity extends AppCompatActivity implements OnVRPlayerInter
 
     @Override
     public void onVRPlayerLatitudeChanged(Double latitude) {
-        this.log("Latitude changed to " + latitude.toString());
+//        this.log("Latitude changed to " + latitude.toString());
     }
 
     @Override
     public void onVRPlayerLongitudeChanged(Double longitude) {
-        this.log("Longitude changed to " + longitude.toString());
+//        this.log("Longitude changed to " + longitude.toString());
     }
 
     @Override
